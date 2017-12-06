@@ -1,0 +1,2 @@
+Here are some papers on the first subtopic of interest. Each should have a DOI as well as a short synopsis of why it is
+interesting in the context of the tutorial. It should not just copy paste the abstract.
