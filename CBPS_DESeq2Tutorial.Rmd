@@ -1,0 +1,73 @@
+---
+title: "DESeq2 tutorial"
+author: ""
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("~/Desktop")
+```
+
+## About 
+
+There are many tools available for differential gene expression analysis. We are providing tutorials on one of the most popular R packages: **DESeq2**. 
+
+
+## DESeq2 
+
+The DESeq2 package is used to identify genes that are differentially expressed. It estimates variance-mean dependence in count data from high-thoughtput sequencing assays and tests for differential expression based on a model using the negative binomial distribution. It is available on Bioconductor <https://www.bioconductor.org/packages/release/bioc/html/DESeq2.html>. 
+
+Author: Michael Love <michaelisaiahlove at gmail.com>
+
+Citation: Love MI, Huber W and Anders S (2014). “Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.” Genome Biology, 15, pp. 550. <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8>
+
+To install the package, start R and enter:
+```{r install, eval = FALSE}
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("DESeq2")
+library(DESeq2)
+```
+
+
+## Data 
+
+The sample data and read-in instruction is borrowed from Bioconductor <https://www.bioconductor.org/help/workflows/RNAseq123/#reading-in-count-data>. Our tutorial uses the data after preprocessing. The original format is DGEList. We will first convert it to a DESeqDataSet object.
+
+```{r reformat data, eval = FALSE}
+load("SampleData_DGEList.Rdata")
+
+data <- DESeqDataSetFromMatrix(x$counts, colData = x$samples, design = ~ group)
+
+```
+
+
+
+## Differential expression analysis
+
+```{r plotMA, eval = FALSE}
+dds <- DESeq(data)
+res <- results(dds, alph = 0.05)
+res <- res[order(res$padj), ]
+
+summary(res)
+# out of 14165 with nonzero total read count
+# adjusted p-value < 0.05
+# LFC > 0 (up)     : 4354, 31% 
+# LFC < 0 (down)   : 4477, 32% 
+# outliers [1]     : 10, 0.071% 
+# low counts [2]   : 0, 0% 
+# (mean count < 16)
+# [1] see 'cooksCutoff' argument of ?results
+# [2] see 'independentFiltering' argument of ?results
+
+sum(res$padj < .05, na.rm = TRUE)
+# [1] 8831
+
+plotMA(res, main = "DESeq2")
+```
+
+
+
+
