@@ -2,7 +2,7 @@ Introduction to Differential Expression Analysis using edgeR and DESeq2 packages
 
 Biology
 
-In organisms, genes may be expressed at different rates under different conditions – that is, producing different numbers of mRNAs.  For instance, an organism under heat stress may have a proportion of its cells expressing heat-shock proteins, whereas at normal temperatures these genes might be lowly expressed. Cancer cells in vitro may express more protective genes under chemotherapy stress. In the case of individuals with different phenotypes, there may be simple differences in constitutive gene expression levels. In contrast, so-called maintenance genes are expected to have little differential expression, even under different conditions.  (Only a small proportion of genes will be significantly differentially expressed between two experimental conditions.)
+In organisms, genes may be expressed at different rates under different conditions – that is, producing different numbers of mRNA for the same gene. For instance, an organism under heat stress may have a proportion of its cells expressing heat-shock proteins, whereas at normal temperatures these genes might be lowly expressed. Cancer cells in vitro may express more protective genes under chemotherapy stress. In the case of individuals with different phenotypes, there may be differences in constitutive gene expression levels. In contrast, so-called maintenance genes are expected to have little differential expression, even under different conditions.  (Only a small proportion of genes will be significantly differentially expressed between two experimental conditions.)
 
 Experiments
 
